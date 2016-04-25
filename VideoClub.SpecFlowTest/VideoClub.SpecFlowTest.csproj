@@ -54,6 +54,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AccessToMovies.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccessToMovies.feature</DependentUpon>
+    </Compile>
+    <Compile Include="AccessToMoviesSteps.cs" />
     <Compile Include="ControlUserRegister.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -63,6 +69,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AccessToMovies.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AccessToMovies.feature.cs</LastGenOutput>
+    </None>
     <None Include="App.config" />
     <None Include="ControlUserRegister.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

@@ -10,7 +10,7 @@ Scenario: Valid new member
 	When I click Register Me
 	Then a member number is given to me
 
-Scenario: Member already exists
+Scenario: Member already exists 
 	Given I am a member of a video club
 	And I enter "Maxi" as the name
 	And I enter "Topp" as the lastname
