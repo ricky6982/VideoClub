@@ -1,63 +1,57 @@
 ﻿using System;
+using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
+using VideoClub.Core;
+using VideoClub.Core.Enums;
 
 namespace VideoClub.SpecFlowTest
 {
     [Binding]
     public class AccessToMoviesSteps
     {
+        private Club _videoClub;
+        private User _usuario;
+
+        [BeforeScenario()]
+        public void Hook()
+        {
+            _videoClub = new Club();
+        }
+
         [Given(@"I am a member of the video club")]
         public void GivenIAmAMemberOfTheVideoClub()
         {
-            ScenarioContext.Current.Pending();
+            _usuario = new User("Maxi", "Topp");
+            _videoClub.AddMember(_usuario);
         }
-        
+
         [When(@"I enter my member number")]
         public void WhenIEnterMyMemberNumber()
         {
-            ScenarioContext.Current.Pending();
+            _videoClub.Users.Select(x => x.Number == _usuario.Number);
         }
-        
+
         [When(@"I select the movies catalogs")]
         public void WhenISelectTheMoviesCatalogs()
         {
-            ScenarioContext.Current.Pending();
+            var moviesSelected = _videoClub.Catalogo.Where(x => x.Categoria == CategoriaType.Ficcion);
+            foreach (var movie in moviesSelected)
+            {
+                _usuario.SelectMovie(movie);
+            }
         }
-        
-        [When(@"I select a categories")]
-        public void WhenISelectACategories()
+
+        [Then(@"I can access all movies paged by (.*) movies at a time")]
+        public void ThenICanAccessAllMoviesPagedByMoviesAtATime(int itemsPerPage)
         {
-            ScenarioContext.Current.Pending();
+            Assert.IsTrue(_videoClub.Catalogo.Count < itemsPerPage);
         }
-        
-        [When(@"I enter the name of a director")]
-        public void WhenIEnterTheNameOfADirector()
-        {
-            ScenarioContext.Current.Pending();
-        }
-        
+
         [Then(@"I am granted access to the system")]
         public void ThenIAmGrantedAccessToTheSystem()
         {
-            ScenarioContext.Current.Pending();
-        }
-        
-        [Then(@"I can access all movies paged by (.*) movies at a time")]
-        public void ThenICanAccessAllMoviesPagedByMoviesAtATime(int p0)
-        {
-            ScenarioContext.Current.Pending();
-        }
-        
-        [Then(@"I can see all movies from that category paged by (.*) items at a time")]
-        public void ThenICanSeeAllMoviesFromThatCategoryPagedByItemsAtATime(int p0)
-        {
-            ScenarioContext.Current.Pending();
-        }
-        
-        [Then(@"I can see all movies made by the director paged by (.*) items at a time")]
-        public void ThenICanSeeAllMoviesMadeByTheDirectorPagedByItemsAtATime(int p0)
-        {
-            ScenarioContext.Current.Pending();
+            Assert.AreEqual((int)TypeUser.Member, _usuario.Type);
         }
     }
 }

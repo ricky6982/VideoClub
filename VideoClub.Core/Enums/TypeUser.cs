@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VideoClub.Core
+namespace VideoClub.Core.Enums
 {
-    class VideoClub
+    public enum TypeUser
     {
-        public ICollection<User> Users { get; protected set; }
+        Annonymous,
+        Member
     }
 }
