@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Club.cs" />
+    <Compile Include="Director.cs" />
     <Compile Include="Enums\CategoriaType.cs" />
     <Compile Include="Enums\TypeUser.cs" />
     <Compile Include="Pelicula.cs" />
